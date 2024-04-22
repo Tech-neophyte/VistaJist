@@ -53,7 +53,7 @@ const App = () => {
         <div className="navbar">
           <div className="header">
             <img className="icon" src={icon} alt="icon" />
-            <h1 className="heading">NewsEra</h1>
+            <h1 className="heading">Vista Jist</h1>
           </div>
           {!weatherInfo.place ? (
             <div className="weather-help">
