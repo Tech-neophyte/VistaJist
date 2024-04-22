@@ -7,7 +7,6 @@ import Footer from "./Components/Footer/Footer";
 
 const alanKey = process.env.REACT_APP_ALAN_KEY;
 
-
 const App = () => {
   const [newsArticles, setNewsArticles] = useState([]);
   const [activeArticle, setActiveArticle] = useState(-1);
