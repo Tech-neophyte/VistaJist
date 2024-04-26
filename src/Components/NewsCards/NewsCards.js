@@ -5,11 +5,13 @@ import Grow from "@mui/material/Grow";
 import "./NewsCards.css";
 
 const infoCards = [
-  { title: "Latest News", text: "Give me the latest news" },
+  { title: "Latest News",
+   info:"Ipl score, elections... " ,
+   text: "Give me the latest Ipl score" },
   {
     title: "News by Categories",
-    info: "Business, Entertainment, General, Health, Science, Sports, Technology",
-    text: "Give me the latest Technology news",
+    info: "Business, Health, Science, Sports, Technology",
+    text: "Give me the latest Science news",
   },
   {
     title: "News by Terms",
