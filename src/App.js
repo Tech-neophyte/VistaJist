@@ -5,7 +5,7 @@ import NewsCards from "./Components/NewsCards/NewsCards";
 import icon from "./Assets/icon.png";
 import Footer from "./Components/Footer/Footer";
 
-const alanKey = "6b283db5c3cf8f5b2a25852d1e61b42e2e956eca572e1d8b807a3e2338fdd0dc/stage";
+const alanKey = "6b283db5c3cf8f5b2a25852d1e61b42e2e956eca572e1d8b807a3e2338fdd0dc";
 
 const App = () => {
   const [newsArticles, setNewsArticles] = useState([]);
