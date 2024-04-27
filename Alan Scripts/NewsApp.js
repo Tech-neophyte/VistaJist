@@ -6,7 +6,7 @@ intent(
   )
 );
 
-const NEWS_API_KEY = "d8f5ed42b21e4e30ae51dd23a219ac9d";
+const NEWS_API_KEY = "1a646fdb0ac14ffdb492b3d83f353a4d";
 const WEATHER_API_KEY = "5920cecc638a498287a122719222901";
 const AQI_API_KEY = "b2626edc82c24b91c69e261ffaf81eca1fa225dc";
 let savedArticles = [];
