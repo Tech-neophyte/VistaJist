@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -204,3 +205,57 @@ html {
     width: 90%;
   }
 }
+/* Weather Card */
+.weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 23rem; /* Added max-width */
+  height: 90%;
+  overflow: hidden; /* Added overflow property */
+}
+
+/* Weather Help */
+.weather-help {
+  /* Existing styles */
+}
+
+/* Temperature */
+.temperature {
+  /* Existing styles */
+}
+
+/* Description */
+.description {
+  /* Existing styles */
+}
+
+/* Footer */
+.footer {
+  /* Existing styles */
+}
+
+@media screen and (max-width: 1290px) {
+  /* Adjustments for smaller screens */
+  .weather {
+    margin-top: 2rem;
+  }
+
+  .weather-help {
+    width: 70%;
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+
+  /* Adjustments for .description if needed */
+}
+
+@media screen and (max-width: 711px) {
+  /* Further adjustments for smaller screens */
+  .weather-help {
+    width: 90%;
+  }
+
+  /* Additional adjustments if needed */
+}
+

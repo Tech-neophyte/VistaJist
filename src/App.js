@@ -57,7 +57,7 @@ const App = () => {
           </div>
           {!weatherInfo.place ? (
             <div className="weather-help">
-              Try saying: <i> Temperature in New York!</i>
+              Try saying: <i> Temperature in New Delhi!</i>
             </div>
           ) : (
             <div className="weather">
