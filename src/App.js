@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import alanBtn from "@alan-ai/alan-sdk-web";
 import wordsToNumbers from "words-to-numbers";
 import NewsCards from "./Components/NewsCards/NewsCards";
 import icon from "./Assets/icon.png";
 import Footer from "./Components/Footer/Footer";
+import { GeminiClient } from "@gemini-ai/sdk";
 
-const alanKey = "6b283db5c3cf8f5b2a25852d1e61b42e2e956eca572e1d8b807a3e2338fdd0dc";
+const geminiKey = "AIzaSyCz-6Kb4uW3yEDo7A1BmRXfhpa7F6bsAuc"; // Replace with your Gemini AI API key
 
 const App = () => {
   const [newsArticles, setNewsArticles] = useState([]);
@@ -13,39 +13,41 @@ const App = () => {
   const [weatherInfo, setWeatherInfo] = useState({});
 
   useEffect(() => {
-    alanBtn({
-      key: alanKey,
-      onCommand: ({ command, articles, number, forecastInfo, aqi }) => {
-        if (command === "newHeadlines") {
-          setNewsArticles(articles);
-          setActiveArticle(-1);
-        } else if (command === "highlight") {
-          setActiveArticle((prevActiveArticle) => prevActiveArticle + 1);
-        } else if (command === "open") {
-          const parsedNumber =
-            number.length > 2
-              ? wordsToNumbers(number, { fuzzy: true })
-              : number;
-          const article = articles[parsedNumber - 1];
-
-          if (article) {
-            window.open(article.url, "_blank");
-          }
-        } else if (command === "weather") {
-          console.log(forecastInfo);
-          console.log(aqi);
-          setWeatherInfo({
-            place: forecastInfo.name,
-            temp: Math.round(forecastInfo.currTemp),
-            high: Math.round(forecastInfo.maxTemp),
-            low: Math.round(forecastInfo.minTemp),
-            desc: forecastInfo.condition,
-            air: aqi,
-          });
-        }
-      },
+    const gemini = new GeminiClient({
+      apiKey: geminiKey,
     });
-  }, []);
+
+    gemini.listen(({ command, entities }) => {
+      if (command === "newHeadlines") {
+        const articles = entities.articles;
+        setNewsArticles(articles);
+        setActiveArticle(-1);
+      } else if (command === "highlight") {
+        setActiveArticle((prevActiveArticle) => prevActiveArticle + 1);
+      } else if (command === "open") {
+        const number = entities.number;
+        const parsedNumber =
+          number.length > 2 ? wordsToNumbers(number, { fuzzy: true }) : number;
+        const article = newsArticles[parsedNumber - 1];
+
+        if (article) {
+          window.open(article.url, "_blank");
+        }
+      } else if (command === "weather") {
+        const forecastInfo = entities.forecastInfo;
+        const aqi = entities.aqi;
+
+        setWeatherInfo({
+          place: forecastInfo.name,
+          temp: Math.round(forecastInfo.currTemp),
+          high: Math.round(forecastInfo.maxTemp),
+          low: Math.round(forecastInfo.minTemp),
+          desc: forecastInfo.condition,
+          air: aqi,
+        });
+      }
+    });
+  }, [newsArticles]);
 
   return (
     <div className="app">
